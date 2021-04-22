@@ -7,23 +7,26 @@
   <title>Document</title>
   <script defer src="face-api.min.js"></script>
   <script defer src="script.js"></script>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      width: 100vw;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    canvas {
-      position: absolute;
-    }
-  </style>
+  <link rel="stylesheet" href="index.css">
 </head>
 <body>
-  <video id="video" width="720" height="560" autoplay muted></video>
+  <div class="container">
+    <h1><span>Happy</span>Piano</h1>
+    <video id="video" width="720" height="560" autoplay muted></video>
+    <ul class="set">
+      <li class="white b" id="b"></li>
+      <li class="black as" id="as"></li>
+      <li class="white a" id="a"></li>
+      <li class="black gs" id="gs"></li>
+      <li class="white g" id="g"></li>
+      <li class="black fs" id="fs"></li>
+      <li class="white f" id="f"></li>
+      <li class="white e" id="e"></li>
+      <li class="black ds" id="ds"></li>
+      <li class="white d" id="d"></li>
+      <li class="black cs" id="cs"></li>
+      <li class="white c" id="c"></li>
+    </ul>
+  </div>
 </body>
 </html>
