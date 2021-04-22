@@ -1,5 +1,6 @@
 const video = document.getElementById('video')
 
+var currentHappyLevel = 0.4;
 var soundToPlay = null;
 const b = new Audio('./sounds/B3.mp3');
 const as = new Audio('./sounds/A3S.mp3');
@@ -13,6 +14,8 @@ const ds = new Audio('./sounds/D3S.mp3');
 const d = new Audio('./sounds/D3.mp3');
 const cs = new Audio('./sounds/C3S.mp3');
 const c = new Audio('./sounds/C3.mp3');
+
+const calibrationButton = document.getElementById('calibrationButton');
 
 const B = document.getElementById('b');
 B.addEventListener('mouseover', () => onKayHover(b));
@@ -86,16 +89,18 @@ video.addEventListener('play', () => {
   faceapi.matchDimensions(canvas, displaySize)
   setInterval(async () => {
     const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions()
-    const resizedDetections = faceapi.resizeResults(detections, displaySize)
+    const resizedDetections = faceapi.resizeResults(detections, displaySize);
     canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height)
-    faceapi.draw.drawFaceLandmarks(canvas, resizedDetections)
+    faceapi.draw.drawFaceLandmarks(canvas, resizedDetections);
     detections.forEach(detection => {
-      if (detection.expressions.happy > 0.4) {
+      calibrationButton.addEventListener('click', () => {currentHappyLevel = detection.expressions.happy});
+      console.log(currentHappyLevel)
+      if (detection.expressions.happy > currentHappyLevel) {
         if (soundToPlay) soundToPlay.play();
         console.log('happy')
       }
     })
-  }, 100)
+  }, 500)
 })
 
 startVideo()

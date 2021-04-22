@@ -38,6 +38,10 @@ canvas {
     top: 77px;
 }
 
+button{
+    margin-bottom: 10px;
+}
+
 ul {
     height:15em;
     width:30em;
